@@ -38,7 +38,7 @@ namespace NashvilleTheatre.Controllers
             {
                 if (item.LineItemType == "Show")
                 {
-                    ShowLineItem show = _lineItemRepository.GetShowLineItems(item.ProductId);
+                    ShowLineItem show = _lineItemRepository.GetShowLineItem(item.ProductId);
                     shows.Add(show);
                 }
             }

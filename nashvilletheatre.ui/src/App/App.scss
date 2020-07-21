@@ -40,13 +40,20 @@ p {
   font-size:$para;
   font-weight: $light;
 }
-
+*.mini {
+  font-size: $mini;
+}
 *.title {
   color:$mainRed;
 }
 *.subtext{
   font-style:italic;
   font-weight:$medium;
+}
+.red-dash {
+  background-color: $mainRed;
+  height: 3px;
+  width: 2em;
 }
 .button-1 {
   background-color: $mainRed;
@@ -60,6 +67,12 @@ p {
     background-color: $hollywood;
   }
   transition: background-color 500ms;
+}
+a {
+  color:$black;
+  &:hover {
+    color: $mainRed;
+  }
 }
 Footer {
   font-family: $text;

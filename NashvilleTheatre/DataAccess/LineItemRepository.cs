@@ -46,12 +46,14 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
-        public ShowLineItem GetShowLineItems(int id)
+        public ShowLineItem GetShowLineItem(int id)
         {
-            var sql = @"SELECT ShowName AS ItemName, ShowDateTime, ShowCost AS ItemPrice, LineItemId, Quantity
+            var sql = @"SELECT ShowName AS ItemName, ShowDateTime, ShowCost AS ItemPrice, LineItemId, Quantity, TheatreCompanyName,ShowImageUrl,VenueName, CreditCost
                         FROM ShowDateTime
                         JOIN Show ON Show.ShowId = ShowDateTime.ShowId
                         JOIN LineItem ON LineItem.ProductId = ShowDateTime.ShowDateTimeId
+                        JOIN TheatreCompany ON TheatreCompany.TheatreCoId = Show.TheatreCoId
+                        JOIN Venue ON Venue.VenueId = Show.VenueId
                         WHERE ShowDateTimeId = @id";
 
             using (var db = new SqlConnection(ConnectionString))

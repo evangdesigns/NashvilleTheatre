@@ -47,7 +47,7 @@ namespace NashvilleTheatre.Controllers
                 if (item.LineItemType == "Show")
                 {
                     //Push Quantity and and LineItemId to LineItem Class
-                    ShowLineItem show = _lineItemRepository.GetShowLineItems(item.ProductId);
+                    ShowLineItem show = _lineItemRepository.GetShowLineItem(item.ProductId);
                     shows.Add(show);
                 }
                 else if (item.LineItemType == "Subscription")
