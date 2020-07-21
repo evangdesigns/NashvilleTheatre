@@ -29,15 +29,15 @@ namespace NashvilleTheatre.Models
 
             if (shows == null)
             {
-            cart.Total = subscriptions.Sum(item => item.ItemPrice);
+            cart.Total = subscriptions.Sum(item => item.ItemPrice * item.Quantity);
             }
             else if (subscriptions == null)
             {
-            cart.Total = shows.Sum(item => item.ItemPrice);
+            cart.Total = shows.Sum(item => item.ItemPrice * item.Quantity);
             }
             else
             {
-            cart.Total = shows.Sum(item => item.ItemPrice) + subscriptions.Sum(item => item.ItemPrice);
+            cart.Total = shows.Sum(item => item.ItemPrice * item.Quantity) + subscriptions.Sum(item => item.ItemPrice * item.Quantity);
             };
             return cart;
         }

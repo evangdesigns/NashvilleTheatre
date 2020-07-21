@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseUrl} from '../apiKeys.json';
+import { baseUrl } from '../apiKeys.json';
 
 const getUsersCart = (uid) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/api/cart/${uid}`)
@@ -37,11 +37,18 @@ const deleteLineItem = (id) => new Promise((resolve, reject) => {
   .catch(error => reject(error))
 });
 
+const updateQuantity = (id, quantity) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/api/lineitem/${id}/quantity/${quantity}`)
+  .then((result) => resolve(result.data))
+  .catch(error => reject(error))
+});
+
 export {
   getUsersCartId,
   getLineItems,
   getUsersCart,
   getShowLineItems,
   getSubscriptionLineItems,
-  deleteLineItem
+  deleteLineItem,
+  updateQuantity
 };

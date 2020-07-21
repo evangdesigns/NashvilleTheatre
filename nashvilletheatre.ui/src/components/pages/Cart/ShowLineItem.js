@@ -9,14 +9,12 @@ class ShowLineItem extends React.Component {
 
   removeLineItemEvent = (e) => {
     e.preventDefault();
-    console.log(e);
     const { removeLineItem, item } = this.props;
     removeLineItem(item.lineItemId);
-    console.log('link clicked')
   }
 
   render() {
-    const { item } = this.props
+    const { item, updateQuantity } = this.props
     return (
       <tr>
           <td>
@@ -55,7 +53,7 @@ class ShowLineItem extends React.Component {
             <p className="mini">({item.creditCost} Credit)</p>
           </td>
           <td>
-            <Quantity quantity={item.quantity}/>
+            <Quantity id={item.lineItemId} quantity={item.quantity} updateQuantity={updateQuantity}/>
           </td>
           <td>
             <p className="bold">

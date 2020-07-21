@@ -1,13 +1,10 @@
 @import '../styles/variables';
 @import '~bootstrap/dist/css/bootstrap.min.css';
-body {
-  margin: 0;
+* {
   font-family: $text;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  p {
-    margin: 0;
-  }
+}
+.row {
+  margin: 0 !important;
 }
 section {
   border-top: 1px solid #efefef;

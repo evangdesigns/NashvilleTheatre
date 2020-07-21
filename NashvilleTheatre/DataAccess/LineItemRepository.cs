@@ -31,6 +31,18 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
+        public LineItem UpdateQuantity (int id, int quantity)
+        {
+            var sql = "UPDATE LineItem SET Quantity = @quantity WHERE LineItemId = @id;";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameters = new { Id = id, Quantity = quantity };
+                var lineItem = db.QueryFirstOrDefault<LineItem>(sql, parameters);
+                return lineItem;
+            }
+        }
+
         public int DeleteLineItem(int id)
         {
             var sql = "DELETE FROM LineItem WHERE LineItemId = @id";
@@ -88,6 +100,26 @@ namespace NashvilleTheatre.DataAccess
                 var parameters = new { Id = id };
                 var lineItem = db.QueryFirst <SubscriptionLineItem> (sql, parameters); ;
                 return lineItem;
+            }
+        }
+
+        public LineItem AddALineItem(AddLineItem newLineItem)
+        {
+            var sql = @"INSERT INTO LineItem (CartId,LineItemTypeId,ProductId,Quantity)
+                        VALUES (@CartId, @LineItemTypeId, @ProductId, @Quantity)";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameters = new
+                {
+                    newLineItem.CartId,
+                    newLineItem.LineItemTypeId,
+                    newLineItem.ProductId,
+                    newLineItem.Quantity,
+                };
+
+                var result = db.QueryFirstOrDefault<LineItem>(sql, parameters);
+                return result;
             }
         }
     }

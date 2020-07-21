@@ -64,12 +64,47 @@ namespace NashvilleTheatre.Controllers
 
             return Ok(subscriptions);
         }
-        //DELETE: api/lineitem/delete/${id}
+        //DELETE: api/lineitem/delete/{id}
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteLineItem(int id)
         {
              _lineItemRepository.DeleteLineItem(id);
 
+            return Ok();
+        }
+
+        //POST: api/lineitem/{id}/quantity/{quantity}
+        [HttpPost("{id}/quantity/{quantity}")]
+        public IActionResult UpdateQuantity(int id, int quantity)
+        {
+            _lineItemRepository.UpdateQuantity(id, quantity);
+
+            return Ok();
+        }
+
+        //POST: api/lineitem/add
+        [HttpPost("add")]
+        public IActionResult AddLineItem(AddLineItem newLineItem)
+        {
+            var cart = _lineItemRepository.GetLineItemsByCartId(newLineItem.CartId);
+            var itemTypeId = 2;
+            foreach (LineItem item in cart) // Loop through Cart Item List
+            {   //if LineItem Type and Product Id match to something already in the cart, add quantity to existing quantity.
+                if (item.LineItemType == "Subscription")
+                {
+                    itemTypeId = 1;
+                }
+                if (itemTypeId == newLineItem.LineItemTypeId && item.ProductId == newLineItem.ProductId)
+                {
+                    //Update the quantity of the existing item
+                    var newQuantity = item.Quantity + newLineItem.Quantity;
+                    _lineItemRepository.UpdateQuantity(item.LineItemId, newQuantity);
+                }
+                else
+                {
+                    _lineItemRepository.AddALineItem(newLineItem);
+                }
+            }
             return Ok();
         }
 
