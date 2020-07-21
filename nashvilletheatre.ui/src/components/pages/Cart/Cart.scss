@@ -1,11 +1,30 @@
 @import '../../../styles/variables';
 @import '../../../App/App.scss';
 .cart-container {
-  margin: 0 5%;
-  .button-1 {
-    float: right;
-    position: relative;
-    right: 0;
+  margin: 50px 0;
+  .cart-summary {
+    background-color: $lightGrey;
+    padding:0px;
+    border: 2px solid $lightGrey;
+    box-sizing: border-box;
+    .cart-summary-top {
+      padding: 40px 20px;
+      padding-right:-20px;
+    }
+    .cart-summary-middle {
+      width: 100%;
+      padding: 20px;
+      padding-right: 40px;
+      background-color:$white;
+    }
+    .cart-summary-bottom {
+      width: 100%;
+      .button-1 {
+        margin: 20px 5%;
+        width:90%;
+      }
+    }
+
   }
   th:last-child,
   td:last-child {
@@ -38,10 +57,16 @@
   .mini{
     font-size:$mini;
   }
+  .light{
+    font-weight: $light;
+  }
+  #quantity{
+    width: 3em;
+  }
 
 }
 
-.ticket-image {
+.cart-image {
   width: 200px;
   img {
     width:100%;

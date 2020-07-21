@@ -7,13 +7,19 @@ import './Cart.scss';
 
 class ShowLineItem extends React.Component {
 
+  removeLineItemEvent = (e) => {
+    e.preventDefault();
+    const { removeLineItem, item } = this.props;
+    removeLineItem(item.lineItemId);
+  }
+
   render() {
-    const { item } = this.props
+    const { item, updateQuantity } = this.props
     return (
       <tr>
           <td>
             <div className="show-line-item d-flex flex-wrap justify-content-start">
-              <div className="ticket-image">
+              <div className="cart-image">
                 <svg height="0" width="0">
                   <defs>
                     <clipPath id="ticket-clip" clipPathUnits="objectBoundingBox"
@@ -38,7 +44,7 @@ class ShowLineItem extends React.Component {
                   {item.venueName}
                 </p>
                 }
-                <a href="#">Remove</a>
+                <Link onClick={this.removeLineItemEvent}>Remove</Link>
               </div>
             </div>
           </td>
@@ -47,7 +53,7 @@ class ShowLineItem extends React.Component {
             <p className="mini">({item.creditCost} Credit)</p>
           </td>
           <td>
-            <Quantity quantity={item.quantity}/>
+            <Quantity id={item.lineItemId} quantity={item.quantity} updateQuantity={updateQuantity}/>
           </td>
           <td>
             <p className="bold">

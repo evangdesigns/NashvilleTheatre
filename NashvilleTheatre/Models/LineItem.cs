@@ -32,4 +32,12 @@ namespace NashvilleTheatre.Models
         public int Quantity { get; set; }
     }
 
+    public class AddLineItem
+    {
+        public int CartId { get; set; }
+        public int LineItemTypeId { get; set; }
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
+    }
+
 }
