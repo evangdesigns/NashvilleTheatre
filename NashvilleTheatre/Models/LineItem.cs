@@ -18,6 +18,10 @@ namespace NashvilleTheatre.Models
         public DateTime ShowDateTime { get; set; }
         public int Quantity { get; set; }
         public decimal ItemPrice { get; set; }
+        public string TheatreCompanyName { get; set; }
+        public string VenueName { get; set; }
+        public string ShowImageUrl { get; set; }
+        public decimal CreditCost { get; set; }
     }
 
     public class SubscriptionLineItem

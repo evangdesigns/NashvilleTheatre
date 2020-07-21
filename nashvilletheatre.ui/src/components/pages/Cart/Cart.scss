@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+@import '../../../App/App.scss';
 .cart-container {
   margin: 0 5%;
   .button-1 {
@@ -5,4 +7,44 @@
     position: relative;
     right: 0;
   }
+  th:last-child,
+  td:last-child {
+    text-align: right;
+  }
+  section {
+    border-top: 1px solid #efefef;
+  }
+  h1 {
+    font-size: $h1;
+    font-weight:$bold;
+  }
+  h2 {
+    font-size:$h2;
+  }
+  h3 {
+    font-size:$h3;
+  }
+  h4 {
+    font-size:$h4;
+    font-weight:$light;
+  }
+  p {
+    font-size:$para;
+    font-weight: $light;
+  }
+  .bold {
+    font-weight:$bold;
+  }
+  .mini{
+    font-size:$mini;
+  }
+
+}
+
+.ticket-image {
+  width: 200px;
+  img {
+    width:100%;
+  }
+  clip-path: url(#ticket-clip);
 }

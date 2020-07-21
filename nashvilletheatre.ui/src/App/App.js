@@ -39,6 +39,7 @@ FirebaseApp();
 class App extends React.Component {
   state = {
     authed: false,
+    subscribed: false,
   };
 
   componentDidMount() {
@@ -76,9 +77,9 @@ class App extends React.Component {
             <Route path="/theatre/:theatreId" exact component={Theatre} authed={authed} />
             <Route path="/venue:venueId" exact component={Venue} authed={authed} />
             <Route path="/account/theatreco" component={SellerDashboard} authed={authed} />
-            <PrivateRoute path="/account" component={Account} authed={authed} handleAuth={this.handleAuthChange} />
             <Route path="/search/:searchTerm" exact component={SearchResults} authed={authed} />
             <Route path="/cart/:uid" exact component={Cart} authed={authed} />
+            <PrivateRoute path="/account" component={Account} authed={authed} handleAuth={this.handleAuthChange} />
             {/* <PrivateRoute path="/theatre/:theatreId/show/new" exact component={ShowForm} />
             <PrivateRoute path="/theatre/:theatreId/show/:showId/edit" exact component={ShowForm} /> */}
           </Switch>

@@ -1,6 +1,6 @@
 import React from 'react'
-import ShowLineItem from './ShowLineItem';
-import SubscriptionLineItem from './SubscriptionLineItem';
+import LineItem from './LineItem';
+import AllShows from '../../shared/AllShows/AllShows';
 import { getUsersCartId, getShowLineItems, getSubscriptionLineItems } from '../../../helpers/data/cartData';
 
 import './Cart.scss';
@@ -29,55 +29,11 @@ class Cart extends React.Component {
   };
 
   render() {
-    const { cartId, shows, subscriptions } = this.state;
-    const showItemListing = shows.map((item) => <ShowLineItem key={item.itemId} item={item}/>)
-    const subscriptionItemListing = subscriptions.map((item) => <SubscriptionLineItem key={item.itemId} item={item}/>)
+    const { shows, subscriptions } = this.state;
     return (
       <div className="cart-container">
-        <h1 className="text-center">Cart {cartId}</h1>
-        <div className="line-items">
-        {subscriptionItemListing.length > 0
-        ?<div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Subscription</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {subscriptionItemListing}
-          </tbody>
-        </table>
-        </div>
-        :null
-        }
-        {shows.length > 0
-        ?<div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Show Name</th>
-              <th scope="col">Show Date</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {showItemListing}
-          </tbody>
-        </table>
-        </div>
-
-        :<div>
-          <h2 className="text-center">Now Shows In Your Cart.</h2>
-          <h4 className="text-center subtext">Let's find some</h4>
-        </div>
-        }
-        </div>
-        <button type="button" className="button-1" onClick={() => {}}>CHECKOUT</button>
+        <h1 className="">Box Office</h1>
+        <LineItem shows={shows} subscriptions={subscriptions}/>
       </div>
     );
   }
