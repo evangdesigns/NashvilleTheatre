@@ -31,6 +31,18 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
+        public int DeleteLineItem(int id)
+        {
+            var sql = "DELETE FROM LineItem WHERE LineItemId = @id";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameters = new { Id = id };
+                var result = db.Execute(sql, parameters);
+                return result;
+            }
+        }
+
         public List<LineItem> GetLineItemsByCartId(int id)
         {
             var sql = @"SELECT CartId, LineItemId, LineItemType, ProductId, Quantity, DateAdded

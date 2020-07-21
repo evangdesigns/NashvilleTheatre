@@ -64,6 +64,14 @@ namespace NashvilleTheatre.Controllers
 
             return Ok(subscriptions);
         }
+        //DELETE: api/lineitem/delete/${id}
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteLineItem(int id)
+        {
+             _lineItemRepository.DeleteLineItem(id);
+
+            return Ok();
+        }
 
     }
 }

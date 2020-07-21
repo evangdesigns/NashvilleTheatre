@@ -28,12 +28,28 @@ class Cart extends React.Component {
     })
   };
 
+// componentDidUpdate(){
+//   const { uid } = this.props.match.params;
+//   getUsersCartId(uid)
+//   .then((cartId) => {
+//     this.setState({ cartId: cartId })
+//     getSubscriptionLineItems(cartId)
+//       .then((subscriptions) => {
+//         this.setState({subscriptions:subscriptions})
+//         getShowLineItems(cartId)
+//           .then((shows) => {
+//             this.setState({shows:shows})
+//       })
+//     })
+//   })
+// };
+
   render() {
     const { shows, subscriptions } = this.state;
     return (
       <div className="cart-container">
         <h1 className="">Box Office</h1>
-        <LineItem shows={shows} subscriptions={subscriptions}/>
+        <LineItem shows={shows} subscriptions={subscriptions} />
       </div>
     );
   }
