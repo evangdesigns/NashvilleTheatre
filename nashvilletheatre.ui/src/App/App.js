@@ -52,7 +52,6 @@ class App extends React.Component {
     });
   };
 
-
   handleAuthChange(authed) {
     this.setState({authed: authed});
   }
@@ -67,24 +66,23 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Navbar handleAuth={this.handleAuthChange} />
-        <div className="content">
-          <Switch>
-            <Route path="/" exact component={Home} authed={authed} />
-            <Route path="/login" exact component={Login} authed={authed} handleAuth={this.handleAuthChange} />
-            <Route path="/register" exact component={Register} authed={authed} />
-            <Route path="/category/:categoryId" exact component={Category} authed={authed} />
-            <Route path="/show/:showId" exact component={Show} authed={authed} />
-            <Route path="/theatre/:theatreId" exact component={Theatre} authed={authed} />
-            <Route path="/venue:venueId" exact component={Venue} authed={authed} />
-            <Route path="/account/theatreco" component={SellerDashboard} authed={authed} />
-            <Route path="/search/:searchTerm" exact component={SearchResults} authed={authed} />
-            <Route path="/cart/:uid" exact component={Cart} authed={authed} />
-            <PrivateRoute path="/account" component={Account} authed={authed} handleAuth={this.handleAuthChange} />
-            {/* <PrivateRoute path="/theatre/:theatreId/show/new" exact component={ShowForm} />
-            <PrivateRoute path="/theatre/:theatreId/show/:showId/edit" exact component={ShowForm} /> */}
-          </Switch>
-        </div>
-
+          <div className="content">
+            <Switch>
+              <Route path="/" exact component={Home} authed={authed} />
+              <Route path="/login" exact component={Login} authed={authed} handleAuth={this.handleAuthChange} />
+              <Route path="/register" exact component={Register} authed={authed} />
+              <Route path="/category/:categoryId" exact component={Category} authed={authed} />
+              <Route path="/show/:showId" exact component={Show} authed={authed} />
+              <Route path="/theatre/:theatreId" exact component={Theatre} authed={authed} />
+              <Route path="/venue:venueId" exact component={Venue} authed={authed} />
+              <Route path="/account/theatreco" component={SellerDashboard} authed={authed} />
+              <Route path="/search/:searchTerm" exact component={SearchResults} authed={authed} />
+              <Route path="/cart/:uid" exact component={Cart} authed={authed} />
+              <PrivateRoute path="/account" component={Account} authed={authed} handleAuth={this.handleAuthChange} />
+              {/* <PrivateRoute path="/theatre/:theatreId/show/new" exact component={ShowForm} />
+              <PrivateRoute path="/theatre/:theatreId/show/:showId/edit" exact component={ShowForm} /> */}
+            </Switch>
+          </div>
           <Footer />
         </Router>
       </div>

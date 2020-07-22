@@ -33,9 +33,9 @@ class ShowLineItem extends React.Component {
                 </Link>
               </div>
               <div className="show-info">
-                <p className="bold">{item.itemName}</p>
+                <p className="bold-weight">{item.itemName}</p>
                 <div className="red-dash"></div>
-                <p className="mini bold">{moment(item.showDateTime).format('L')}  |  {moment(item.showDateTime).format('LT')}</p>
+                <p className="mini bold-weight">{moment(item.showDateTime).format('L')}  |  {moment(item.showDateTime).format('LT')}</p>
                 { item.theatreCompanyName === item.venueName
                 ? <p className="mini">{item.theatreCompanyName}</p>
                 :
@@ -49,14 +49,14 @@ class ShowLineItem extends React.Component {
             </div>
           </td>
           <td>
-            <p className="bold">${item.itemPrice.toFixed(2)}</p>
+            <p className="bold-weight">${item.itemPrice.toFixed(2)}</p>
             <p className="mini">({item.creditCost} Credit)</p>
           </td>
           <td>
             <Quantity id={item.lineItemId} quantity={item.quantity} updateQuantity={updateQuantity}/>
           </td>
           <td>
-            <p className="bold">
+            <p className="bold-weight">
               ${(item.quantity*item.itemPrice).toFixed(2)}
             </p>
           </td>

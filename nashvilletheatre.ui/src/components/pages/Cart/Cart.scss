@@ -24,48 +24,15 @@
         width:90%;
       }
     }
-
   }
   th:last-child,
   td:last-child {
     text-align: right;
   }
-  section {
-    border-top: 1px solid #efefef;
-  }
-  h1 {
-    font-size: $h1;
-    font-weight:$bold;
-  }
-  h2 {
-    font-size:$h2;
-  }
-  h3 {
-    font-size:$h3;
-  }
-  h4 {
-    font-size:$h4;
-    font-weight:$light;
-  }
-  p {
-    font-size:$para;
-    font-weight: $light;
-  }
-  .bold {
-    font-weight:$bold;
-  }
-  .mini{
-    font-size:$mini;
-  }
-  .light{
-    font-weight: $light;
-  }
   #quantity{
     width: 3em;
   }
-
 }
-
 .cart-image {
   width: 200px;
   img {

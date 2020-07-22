@@ -1,9 +1,10 @@
 import React from 'react';
 import showData from '../../../helpers/data/showData';
-import Show from '../../shared/Show/Show';
-import AllShows from '../../shared/AllShows/AllShows';
+import Show from '../../shared/ShowCard/ShowCard';
+import AllShows from '../../shared/HeadlineShows/HeadlineShows';
 import tragedy from '../../../images/tragedy.jpg'
 import './SearchResults.scss';
+import '../../shared/ShowCard/ShowCard.scss';
 
 class SearchResults extends React.Component {
   state = {

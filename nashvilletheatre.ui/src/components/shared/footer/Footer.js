@@ -27,8 +27,8 @@ class Footer extends React.Component {
 
         </div>
 
-      <div className="footer-bottom d-flex justify-content-between">
-        <div>
+      <div className="footer-bottom row justify-content-between">
+        <div className="col-md-4">
           <div className="footer-image">
           <img src={ntc_logo} alt="NashvilleTheater.com Logo" />
           </div>
@@ -36,13 +36,13 @@ class Footer extends React.Component {
           <p>Copyright © 2020 Nahville Theatre.com</p>
           <p><a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a></p>
         </div>
-        <div className="social-icon">
+        <div className="ol-md-4 social-icon">
           <a href="https://www.facebook.com/hartkevin/"><img src={fb_ico} alt="" /></a>
           <a href="https://www.instagram.com/schwarzenegger/"><img src={insta_ico} alt="" /></a>
           <a href="https://twitter.com/Rosie"><img src={tw_ico} alt="" /></a>
           <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0"><img src={yt_ico} alt="" /></a>
         </div>
-        <div className="text-right">
+        <div className="col-md-4 text-right">
           <Newsletter />
           <p>123 Seasame Street, Nashville, TN 37115</p>
           <p>1-800-867-5309</p>

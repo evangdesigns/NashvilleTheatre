@@ -1,6 +1,6 @@
 import React from 'react'
 import LineItem from './LineItem';
-import AllShows from '../../shared/AllShows/AllShows';
+import AllShows from '../../shared/HeadlineShows/HeadlineShows';
 import { getUsersCartId, getShowLineItems, getSubscriptionLineItems, getUsersCart } from '../../../helpers/data/cartData';
 
 import './Cart.scss';

@@ -84,7 +84,7 @@ namespace NashvilleTheatre.Controllers
 
         //POST: api/lineitem/add
         [HttpPost("add")]
-        public IActionResult AddLineItem(AddLineItem newLineItem)
+        public IActionResult AddLineItem([FromBody]AddLineItem newLineItem)
         {
             var cart = _lineItemRepository.GetLineItemsByCartId(newLineItem.CartId);
             var itemTypeId = 2;

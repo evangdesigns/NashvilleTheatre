@@ -40,79 +40,51 @@ class Navbar extends React.Component {
   // }
 
   render() {
-    const { authed } = this.state;
-    const buildAuthComponent = () => {
+    const { authed, subscribed } = this.state;
+    const buildAuthNav = () => {
     if (authed) {
       return (
-        <div>
-          <nav className="navbar navbar-expand">
-            <div className="navbar-nav ml-auto">
-              <ul className="navbar-nav justify-content-end">
-                <li className="nav-item register">
-                  { !authed && (
-                    <Link
-                      className="nav-link"
-                      to="/register">
-                      Join
-                    </Link>
-                  )}
-                </li>
-                <li className="nav-item account">
-                  { authed && (
-                    <Link
-                      className="nav-link"
-                      to="/account">
-                      My Tickets
-                    </Link>
-                  )}
-                </li>
-                <li className="nav-item logout">
-                  { authed && (
-                    <Link
-                      className='nav-link logoutBtn'
-                      to='/home'
-                      onClick={this.logMeOut}
-                      >Log Out
-                    </Link>
-                    )}
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      )
+        <nav class="navbar-nav navbar-expand-lg justify-content-end">
+          <ul class="nav justify-content-end">
+            <li className="nav-item">
+              <Link className="nav-link" to="/account">My Tickets</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/home" onClick={this.logMeOut}>Log Out</Link>
+            </li>
+          </ul>
+        </nav>
+      );
+    } else {
+      return (
+        <nav class="navbar-nav navbar-expand-lg justify-content-end">
+          <ul class="nav justify-content-end">
+            <li className="nav-item">
+              <Link className="nav-link" onClick={this.loginClickEvent}>Sign In/Register &nbsp;
+              <img className="profile-icon" src={profile_icon} height="20" alt="" />
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      );
     }
 
-      return <ul className='navbar-nav'>
-          <li className="nav-item">
-            { !authed && (
-            <Link
-              type="submit"
-              className="btn btn-default col-xs-12"
-              onClick={this.loginClickEvent}
-              >
-              Login
-              <img src={profile_icon} height="20" alt="" />
-            </Link>
-            )}
-          </li>
-        </ul>;
-      };
+    };
 
       return (
-        <div>
-          <nav className="navbar navbar-expand">
-            <div className="navbar brand">
-              <Link className="navbar-brand" to="/">
-                <img src={ntc_logo} height="50" alt="NashvilleTheater.com" />
+        <div className="container-fluid">
+          <nav className="navbar row align-top">
+            <div className="align-top col-md-2">
+              <Link className="navbar-brand " to="/">
+                <img src={ntc_logo} alt="NashvilleTheater.com" />
               </Link>
             </div>
-            <div className="search-group">
+            <div className="search-group col align-top">
               <SearchBar />
               <Topcategories/>
             </div>
-            <div className="navbar-nav ml-auto">
-              {buildAuthComponent()}
+            <div className="navbar-nav col-md-3 align-top align-content-end">
+              {buildAuthNav()}
             </div>
           </nav>
         </div>

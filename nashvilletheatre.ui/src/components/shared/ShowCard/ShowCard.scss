@@ -1,18 +1,19 @@
-.show-times {
-    margin-top: .5em;
-    margin-bottom: .5em;
-    width: 14em;
-    padding: 6px, 10px;
-    font-size: .75em;
-    font-weight: bold;
+@import '../../../styles/variables';
+@import '../../../styles/index.scss';
 
-    .single-time {
-        list-style: none;
-    }
-        
+.show-card {
+	font-family:$text;
+	margin: 1em;
+	padding: 0;
+	justify-content: middle;
+	width: 320px;
+
+	.ticket-image {
+		clip-path: url(#ticket-clip);
+		margin-bottom: -50px;
+		img {
+			width: 100%;
+		}
+	}
 }
 
-.synopsis {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}

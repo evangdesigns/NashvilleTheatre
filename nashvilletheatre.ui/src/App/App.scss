@@ -1,4 +1,5 @@
 @import '../styles/variables';
+@import '../styles/index.scss';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 .App {
   margin: 0;
@@ -12,70 +13,7 @@
   }
   .content {
     min-height: 50vh; /* will cover the 100% of viewport */
-    overflow: hidden;
     display: block;
     position: relative;
   }
-
-  section {
-    border-top: 1px solid #efefef;
-  }
-  h1 {
-    font-size: $h1;
-    font-weight:$bold;
-  }
-  h2 {
-    font-size:$h2;
-  }
-  h3 {
-    font-size:$h3;
-  }
-  h4 {
-    font-size:$h4;
-    font-weight:$light;
-  }
-  p {
-    font-size:$para;
-    font-weight: $light;
-  }
-  *.mini {
-    font-size: $mini;
-  }
-  *.title {
-    color:$mainRed;
-  }
-  *.subtext{
-    font-style:italic;
-    font-weight:$medium;
-  }
-  .red-dash {
-    background-color: $mainRed;
-    height: 3px;
-    width: 2em;
-  }
-  .button-1 {
-    background-color: $mainRed;
-    border-radius: 100px;
-    padding: 5px 60px;
-    border: none;
-    font-size:20px;
-    color:$white;
-    font-weight:$light;
-    &:hover{
-      background-color: $hollywood;
-    }
-    transition: background-color 500ms;
-  }
-  a {
-    color:$black;
-    &:hover {
-      color: $mainRed;
-    }
-  }
-  Footer {
-    font-family: $text;
-    width:100%;
-    bottom: 0;
-  }
-
 }
