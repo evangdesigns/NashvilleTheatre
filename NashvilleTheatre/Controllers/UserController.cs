@@ -33,6 +33,23 @@ namespace NashvilleTheatre.Controllers
             return Ok(user);
         }
 
+        // GET: api/user/email/{email}
+        [HttpGet("email/{email}")]
+        [AllowAnonymous]
+        public IActionResult GetUserWithEmail(string email)
+        {
+            var user = _userRepository.GetUserByEmail(email);
+            if (user == null)
+            {
+                return BadRequest("No user exists with that email");
+            }
+            else
+            {
+                return Ok(user);
+            }
+            
+        }
+
         // api/user/adduser
         [HttpPost("adduser")]
         [AllowAnonymous]

@@ -36,7 +36,7 @@ namespace NashvilleTheatre
             );
 
             var authSettings = Configuration.GetSection("AuthenticationSettings");
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                     {
@@ -77,6 +77,8 @@ namespace NashvilleTheatre
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseCors("ItsAllGood");
 

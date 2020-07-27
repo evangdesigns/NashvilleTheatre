@@ -1,6 +1,6 @@
 import React from 'react';
 import ShowCard from '../ShowCard/ShowCard';
-import showData from '../../../helpers/data/showData';
+import { getAllShows } from '../../../helpers/data/showData';
 
 import './HeadlineShows.scss';
 
@@ -10,7 +10,7 @@ class HeadlineShows extends React.Component {
 	}
 
 	componentDidMount() {
-		showData.getAllShows()
+		getAllShows()
 			.then(shows => this.setState({ shows: shows }));
 	};
 

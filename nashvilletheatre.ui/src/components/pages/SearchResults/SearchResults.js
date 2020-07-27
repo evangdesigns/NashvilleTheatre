@@ -1,5 +1,5 @@
 import React from 'react';
-import showData from '../../../helpers/data/showData';
+import { searchShows } from '../../../helpers/data/showData';
 import Show from '../../shared/ShowCard/ShowCard';
 import AllShows from '../../shared/HeadlineShows/HeadlineShows';
 import tragedy from '../../../images/tragedy.jpg'
@@ -13,14 +13,14 @@ class SearchResults extends React.Component {
 
   componentDidMount() {
     const { searchTerm } = this.props.match.params
-    showData.searchShows(searchTerm)
+    searchShows(searchTerm)
       .then( shows => this.setState({ shows: shows }))
   }
 
   componentDidUpdate(e) {
     const { searchTerm } = this.props.match.params
     if (e.key === 'Enter'){
-      showData.searchShows(searchTerm)
+      searchShows(searchTerm)
         .then( shows => this.setState({ shows: shows }))
     }
 

@@ -1,0 +1,11 @@
+.header-image {
+  margin: 0 auto;
+  width: 90%;
+  height: 250px;
+  overflow: hidden;
+  img {
+    width:100%;
+    position: relative;
+    transform: translateY(-40%);
+  }
+}

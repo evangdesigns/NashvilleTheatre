@@ -11,7 +11,6 @@
 }
 *.subtext{
   font-style:italic;
-  font-weight:$medium;
 }
 *.mini {
   font-size: $mini;
@@ -51,6 +50,7 @@ p {
   background-color: $mainRed;
   height: 4px;
   width: 2em;
+  margin: 2px 0;
 }
 a {
   color:$mainRed;

@@ -44,7 +44,7 @@ namespace NashvilleTheatre.Controllers
             return Ok(showsByCompany);
         }
         
-        [HttpGet("{ShowId}")]
+        [HttpGet("{showId}")]
         public IActionResult GetShowByShowId(int showId)
         {
             var show = _showRepository.GetShowById(showId);
@@ -59,7 +59,23 @@ namespace NashvilleTheatre.Controllers
             }
         }
 
-        [HttpGet("allshowsbydate")] 
+        //api/show/{id}/dates
+        [HttpGet("{id}/dates")]
+        public IActionResult GetAllShowDateTimesByShowId(int id)
+        {
+            var shows = _showRepository.GetAllShowDateTimesByShowId(id);
+
+            if (shows == null)
+            {
+                return NotFound("No show dates.");
+            }
+            else
+            {
+                return Ok(shows);
+            }
+        }
+
+        [HttpGet("allshowsbydate")]
         public IActionResult GetShowsWithDateTime()
         {
             var show = _showRepository.GetAllShowsWithMostRecentDate();
@@ -74,6 +90,7 @@ namespace NashvilleTheatre.Controllers
             }
         }
 
+        //api/search/{searchTerm}
         [HttpGet("search/{searchTerm}")]
         public IActionResult Search(string searchTerm)
         {

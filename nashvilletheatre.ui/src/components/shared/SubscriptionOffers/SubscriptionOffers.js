@@ -28,7 +28,7 @@ class AllSubscriptions extends React.Component {
           <div className="offer-container d-flex flex-wrap justify-content-center">
             {subscriptionCards}
           </div>
-          <h4 className="theatre-login">Are you a Theatre or a venue? <Link to="">Click here</Link></h4>
+          <h4 className="theatre-login">Are you a Theatre or a Venue? <Link to="">Click here</Link></h4>
         </div>
       </section>
     )

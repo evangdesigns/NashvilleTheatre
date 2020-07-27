@@ -44,7 +44,7 @@ class ShowLineItem extends React.Component {
                   {item.venueName}
                 </p>
                 }
-                <Link onClick={this.removeLineItemEvent}>Remove</Link>
+
               </div>
             </div>
           </td>
@@ -59,6 +59,7 @@ class ShowLineItem extends React.Component {
             <p className="bold-weight">
               ${(item.quantity*item.itemPrice).toFixed(2)}
             </p>
+            <p className="light-weight mini"><Link to="" onClick={()=>{}}>Change</Link><br/><Link className="light-weight mini" onClick={this.removeLineItemEvent}>Remove</Link></p>
           </td>
       </tr>
     );

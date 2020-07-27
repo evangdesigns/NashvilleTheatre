@@ -25,7 +25,7 @@ class ShowCard extends React.Component {
 				<div>
 					<p className="bold-weight">{show.showName}</p>
 					<div className="red-dash"></div>
-					<p>{moment(show.showDateTime).format('L')}  |  {moment(show.showDateTime).format('LT')}</p>
+					<p>{moment(show.showDateTime).format('MMMM, Do')}  |  {moment(show.showDateTime).format('LT')}</p>
 				</div>
 				<Link to={`/show/${show.showId}`}>
 					<p>GET TICKETS</p>

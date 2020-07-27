@@ -25,6 +25,11 @@ class Navbar extends React.Component {
     firebase.auth().signOut();
   };
 
+  // showCartCartHandler(e) {
+  //   const { showCartCard } = this.props;
+  //   showCartCard();
+  // }
+
   componentDidMount() {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -35,17 +40,20 @@ class Navbar extends React.Component {
     });
   }
 
-  // componentWillUnmount() {
-  //   this.removeListener();
-  // }
-
   render() {
-    const { authed, subscribed } = this.state;
+    const { authed } = this.state;
+    const { shows, subscriptions, cart } = this.props;
     const buildAuthNav = () => {
     if (authed) {
       return (
-        <nav class="navbar-nav navbar-expand-lg justify-content-end">
-          <ul class="nav justify-content-end">
+        <nav className="navbar-nav navbar-expand-lg justify-content-end">
+          <ul className="nav justify-content-end">
+            { shows || subscriptions
+            ?<li className="nav-item">
+              <Link type="button" to={`/cart/${cart.cartId}`} onMouseOver={this.showCartCartHandler} className="nav-link" id="cart-link">Cart</Link>
+            </li>
+            : null
+            }
             <li className="nav-item">
               <Link className="nav-link" to="/account">My Tickets</Link>
             </li>
@@ -57,10 +65,10 @@ class Navbar extends React.Component {
       );
     } else {
       return (
-        <nav class="navbar-nav navbar-expand-lg justify-content-end">
-          <ul class="nav justify-content-end">
+        <nav className="navbar-nav navbar-expand-lg justify-content-end">
+          <ul className="nav justify-content-end">
             <li className="nav-item">
-              <Link className="nav-link" onClick={this.loginClickEvent}>Sign In/Register &nbsp;
+              <Link className="nav-link" to="" onClick={this.loginClickEvent}>Sign In/Register &nbsp;
               <img className="profile-icon" src={profile_icon} height="20" alt="" />
               </Link>
             </li>

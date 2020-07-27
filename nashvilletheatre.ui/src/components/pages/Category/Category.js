@@ -11,14 +11,21 @@ class Category extends React.Component {
 
   componentDidMount() {
     const { categoryId } = this.props.match.params;
-    getShowsByCategory(categoryId)
-    .then(showsByCategory => this.setState({ showsByCategory: showsByCategory}))
+    this.getCategoryData(categoryId)
   }
 
-  componentDidUpdate() {
-    const { categoryId } = this.props.match.params;
+  getCategoryData(categoryId) {
     getShowsByCategory(categoryId)
-    .then(showsByCategory => this.setState({ showsByCategory: showsByCategory}))
+    .then(showsByCategory => {
+      this.setState({showsByCategory: showsByCategory})
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.categoryId !== this.state.showsByCategory[0].categoryId) {
+      const nextProp = nextProps.match.params.categoryId;
+      this.getCategoryData(nextProp);
+    }
   }
 
   render() {
