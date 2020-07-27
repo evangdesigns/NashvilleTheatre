@@ -1,25 +1,22 @@
 @import '../../../styles/variables';
 
-.SingleSubscription {
-  display: inline-block;
-  margin:  20px 20px 50px;
-  height: 100%;
-  width: 100%;
-  padding: 65px 0;
-  color: $black;
-  overflow: hidden;
-  .ticketNugget {
-    width: 300px;
+.col-md-2 {
+  padding: 0;
+}
+.offer-body {
+  min-width:300px;
+  margin: 10px 5px;
+  padding: 75px 1px;
+  .offer-detail {
     background-color: $white;
-    padding: 10px 5px;
-    margin: 0;
+    padding: 10px;
+    margin: 0 -14px;
     h1 {
       font-size: $h2;
       font-weight: $light;
       margin-bottom: 0;
     }
     h2 {
-      font-weight: bold;
       text-transform: capitalize !important;
     }
     h5 {
@@ -30,6 +27,8 @@
     }
   }
 }
+
+
 #Community {
   background-color: $community;
 }

@@ -1,15 +1,13 @@
 import React from 'react';
 import moment from 'moment';
-import './show.scss';
 import { Link } from 'react-router-dom';
 
+import './ShowCardFullDetail.scss';
 
-class Show extends React.Component {
-
-	render() {
+class ShowCardFullDetail extends React.Component {
+    render() {
 		const { show } = this.props;
 		return (
-
 			<div className="show-card">
 				<div className="ticket-image">
 					<svg height="0" width="0">
@@ -26,11 +24,18 @@ class Show extends React.Component {
 				<div className="show-info">
 					<h5 className="show-name">{show.showName}</h5>
 						<div className="red-dash"></div>
-						<div className="d-flex justify-content-between">
-							<p className="show-date">{moment(show.showDateTime).format('L')}</p>
-							<p className="show-time">{moment(show.showDateTime).format('LT')}</p>
-						</div>
-					<p className="venue">{show.venueName}</p>
+							<p className="card-text synopsis">{show.synopsis}</p>
+							<div className="red-dash"></div>
+							<div className="d-flex justify-content-between">
+								<ul className="list-group list-group-flush show-times">
+									Upcoming Shows
+									{show.dates.map((date) => <li className="single-time">{moment(date).format('LL LT')}</li> )}
+								</ul>
+							</div>
+					<div className="red-dash"></div>
+					<p className="credit">Credit Price:  {show.creditCost}</p>
+					<p className="theatreCo">Theatre Company:  {show.theatreCompanyName}</p>
+					<p className="venue">Venue:  {show.venueName}</p>
 					<Link className="view-info" to={`/show/${show.showId}`}><h4>View Info</h4></Link>
 				</div>
 			</div>
@@ -39,4 +44,4 @@ class Show extends React.Component {
 	}
 }
 
-export default Show;
+export default ShowCardFullDetail ;

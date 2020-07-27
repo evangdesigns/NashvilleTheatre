@@ -1,13 +1,32 @@
 @import '../styles/variables';
 @import '~bootstrap/dist/css/bootstrap.min.css';
-* {
-  font-family: $text;
-}
 .row {
   margin: 0 !important;
 }
+*{
+  font-family: $text;
+}
+*.title {
+  color:$mainRed;
+}
+*.subtext{
+  font-style:italic;
+}
+*.mini {
+  font-size: $mini;
+}
+*.light-weight {
+  font-weight:$light;
+}
+*.medium-weight {
+  font-weight:$medium;
+}
+*.bold-weight {
+  font-weight:$bold;
+}
 section {
   border-top: 1px solid #efefef;
+  padding: 50px 0;
 }
 h1 {
   font-size: $h1;
@@ -27,21 +46,19 @@ p {
   font-size:$para;
   font-weight: $light;
 }
-
-*.title {
-  color:$mainRed;
-}
-*.subtext{
-  font-style:italic;
-  font-weight:$medium;
-}
-*.bold{
-  font-weight:$bold;
-}
 .red-dash {
   background-color: $mainRed;
-  height: 3px;
+  height: 4px;
   width: 2em;
+  margin: 2px 0;
+}
+a {
+  color:$mainRed;
+  text-decoration: none;
+  &:hover{
+    color:$black;
+    text-decoration: none;
+  }
 }
 .button-1 {
   background-color: $mainRed;

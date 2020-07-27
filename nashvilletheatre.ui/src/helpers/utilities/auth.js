@@ -6,7 +6,7 @@ import keys from '../apiKeys.json';
 
 const baseUrl = keys.baseUrl;
 
-// interceptors work by changing the outbound request before the xhr is sent 
+// interceptors work by changing the outbound request before the xhr is sent
 // or by changing the response before it's returned to our .then() method.
 axios.interceptors.request.use(function (request) {
   const token = sessionStorage.getItem('token');
@@ -28,10 +28,10 @@ const registerUser = (user) => {
 
     //get token from firebase
     cred.user.getIdToken()
-    
+
     //save the token to the session storage
       .then(token => sessionStorage.setItem('token',token))
-    
+
       //save the user to the the api
       .then(() => axios.post(`${baseUrl}/user/adduser`,userInfo));
   });
@@ -48,10 +48,10 @@ const registerUser = (user) => {
 
 //     //get token from firebase
 //     cred.user.getIdToken()
-    
+
 //     //save the token to the session storage
 //       .then(token => sessionStorage.setItem('token',token))
-    
+
 //       //save the user to the the api
 //       .then(() => axios.post(`${baseUrl}/user/adduser`,userInfo));
 //   });
@@ -67,7 +67,6 @@ const loginUser = (user) => {
   });
 };
 
-
 const logoutUser = () => {
   return firebase.auth().signOut();
 };
@@ -77,8 +76,8 @@ const getUid = () => {
 };
 
 export default {
-  getUid, 
-  loginUser, 
-  logoutUser, 
+  getUid,
+  loginUser,
+  logoutUser,
   registerUser,
 };

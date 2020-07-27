@@ -22,4 +22,11 @@ namespace NashvilleTheatre.Models
         public int ShowId { get; set; }
         public string ShowName { get; set; }
     }
+
+    public class ShowDate
+    {
+        public int ShowId { get; set; }
+        public int ShowDateTimeId { get; set; }
+        public DateTime ShowDateTime { get; set; }
+    }
 }

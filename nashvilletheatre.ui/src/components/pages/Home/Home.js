@@ -1,6 +1,6 @@
 import React from 'react';
-import AllSubscriptions from '../../shared/AllSubscriptions/AllSubscriptions';
-import AllShows from '../../shared/AllShows/AllShows';
+import SubscriptionOffers from '../../shared/SubscriptionOffers/SubscriptionOffers';
+import AllShows from '../../shared/HeadlineShows/HeadlineShows';
 
 import './home.scss';
 
@@ -8,11 +8,11 @@ import './home.scss';
 class Home extends React.Component {
   render() {
     return (
-     <div>
+     <section>
        <h1 className="text-center">Welcome NashvilleTheatre.com</h1>
        <AllShows />
-       <AllSubscriptions />
-     </div>
+       <SubscriptionOffers />
+     </section>
     )
   }
 }

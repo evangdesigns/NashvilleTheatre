@@ -65,6 +65,18 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
+        public List<ShowDate> GetAllShowDateTimesByShowId(int id)
+        {
+            var sql = "SELECT * FROM ShowDateTime WHERE ShowId = @id AND showdatetime > getdate()";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameters = new { Id = id };
+                var shows = db.Query<ShowDate>(sql, parameters).ToList();
+                return shows;
+            }
+        }
+
         public IEnumerable<ShowWithDateAndVenueName> GetAllShowsWithMostRecentDate()
         {
             var sql = @"select show.ShowId, show.ShowName, show.showImageUrl,
@@ -80,7 +92,7 @@ namespace NashvilleTheatre.DataAccess
                         join TheatreCompany
                         on TheatreCompany.TheatreCoId = Show.TheatreCoId
                         group by show.ShowId, Show.TheatreCoId, show.VenueId, 
-                            venue.venueName, ShowName, ShowImageUrl, TheatreCompanyName";
+                        venue.venueName, ShowName, ShowImageUrl, TheatreCompanyName";
 
             using (var db = new SqlConnection(ConnectionString))
             {

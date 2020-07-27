@@ -1,7 +1,5 @@
 @import '../../../styles/variables';
 nav {
-  font-weight: 700;
-  font-size:14px;
   color: $black;
   letter-spacing: .1px;
   a.nav-link {
@@ -10,16 +8,25 @@ nav {
   a:hover {
     color:$mainRed !important;
   }
+  .profile-icon {
+    position:relative;
+    top: -2px;
+  }
+  .nav-item {
+    margin-left:15px;
+  }
 }
-nav.navbar{
-  background-color:$white !important;
-  border-top: #efefef 1px solid;
-  border-bottom: #efefef 1px solid;
-}
-.search-group{
+.search-group {
+  margin-top: 60px;
   max-width: 900px !important;
-  min-width:300px;
-  margin-top: 55px;
+  min-width: 300px;
+}
+.navbar-brand {
+  margin-top: -12px;
+  padding: 0;
+  img {
+    width: 100%;
+  }
 }
 .icon-inset {
   position: absolute;
@@ -36,5 +43,9 @@ nav.navbar{
   width: 100%;
   .text-box::placeholder {
     padding-left: 60px !important;
-}
+    font-weight: 100;
+  }
+  input:text{
+    font-weight: 400;
+  }
 }

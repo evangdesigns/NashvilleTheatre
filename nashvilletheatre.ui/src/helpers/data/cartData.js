@@ -43,6 +43,12 @@ const updateQuantity = (id, quantity) => new Promise((resolve, reject) => {
   .catch(error => reject(error))
 });
 
+const addToCart = (item) => new Promise((resolve, reject) => {
+  axios.post(`${baseUrl}/api/lineitem/add`, item)
+  .then((result) => resolve(result.data))
+  .catch(error => reject(error))
+});
+
 export {
   getUsersCartId,
   getLineItems,
@@ -50,5 +56,6 @@ export {
   getShowLineItems,
   getSubscriptionLineItems,
   deleteLineItem,
-  updateQuantity
+  updateQuantity,
+  addToCart
 };

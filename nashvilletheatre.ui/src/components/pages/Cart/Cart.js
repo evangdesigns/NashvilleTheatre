@@ -1,38 +1,51 @@
 import React from 'react'
-import LineItem from './LineItem';
-import AllShows from '../../shared/AllShows/AllShows';
-import { getUsersCartId, getShowLineItems, getSubscriptionLineItems, getUsersCart } from '../../../helpers/data/cartData';
-
+import LineItems from './LineItems';
+import { getUsersCart, getSubscriptionLineItems,getShowLineItems } from '../../../helpers/data/cartData';
 import './Cart.scss';
-
 
 class Cart extends React.Component {
   state = {
-    cart: [],
+    cart: {},
+    subscriptions: [],
     shows: [],
-    subscriptions:[],
+  }
+  componentDidMount() {
+    this.getCartData();
   }
 
   getCartData = () => {
-    const { uid } = this.props.match.params;
-    getUsersCart(uid)
-    .then((cart) => {
-      this.setState({ cart: cart })
-      const cartId = this.state.cart.cartId;
-        getSubscriptionLineItems(cartId)
-          .then((subscriptions) => {
-            this.setState({subscriptions:subscriptions})
-            getShowLineItems(cartId)
-              .then((shows) => {
-                this.setState({shows:shows})
-        })
-      })
-    })
+    this.getUsersCart()
+    this.getShowLineItems();
+    this.getSubscriptionLineItems();
   }
 
-  componentDidMount() {
-    this.getCartData();
-  };
+  getUsersCart() {
+    const uid = sessionStorage.getItem('uid');
+    if (uid) {
+      getUsersCart(uid)
+    .then((cart) => {
+      this.setState({ cart: cart })
+      })
+    }
+  }
+
+  getSubscriptionLineItems() {
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+    getSubscriptionLineItems(cartId)
+      .then((subscriptions) => {
+        this.setState({ subscriptions: subscriptions })
+    })}
+  }
+
+  getShowLineItems() {
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+      getShowLineItems(cartId)
+      .then((shows) => {
+      this.setState({ shows: shows })
+    })}
+  }
 
   render() {
     const { cart, shows, subscriptions } = this.state;
@@ -43,7 +56,7 @@ class Cart extends React.Component {
 
           <div className="row">
             <div className="col">
-              <LineItem shows={shows} subscriptions={subscriptions} getCartData={this.getCartData}/>
+              <LineItems shows={shows} subscriptions={subscriptions} getCartData={this.getCartData}/>
             </div>
             <div className="cart-summary col-lg-4">
               <div className="cart-summary-top">
@@ -58,7 +71,7 @@ class Cart extends React.Component {
                   <div className="col">
 
                     <h4 className="bold float-right">$
-                    {parseFloat(cart.total).toFixed(2)}
+                    {NaN ? '0.00' : parseFloat(cart.total).toFixed(2)}
                     </h4>
                   </div>
                 </div>

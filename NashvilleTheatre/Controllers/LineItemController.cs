@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using NashvilleTheatre.DataAccess;
 using NashvilleTheatre.Models;
+using Dapper;
+using Microsoft.AspNetCore.Authorization;
+using NashvilleTheatre.Commands;
 
 namespace NashvilleTheatre.Controllers
 {
@@ -84,27 +88,43 @@ namespace NashvilleTheatre.Controllers
 
         //POST: api/lineitem/add
         [HttpPost("add")]
-        public IActionResult AddLineItem(AddLineItem newLineItem)
+        public IActionResult AddLineItem([FromBody]AddLineItem newLineItem)
         {
             var cart = _lineItemRepository.GetLineItemsByCartId(newLineItem.CartId);
-            var itemTypeId = 2;
-            foreach (LineItem item in cart) // Loop through Cart Item List
-            {   //if LineItem Type and Product Id match to something already in the cart, add quantity to existing quantity.
-                if (item.LineItemType == "Subscription")
+            var newQuantity = 0;
+
+            if (cart.Any())
+            {
+                if (newLineItem.LineItemTypeId == 1)//Subscription
                 {
-                    itemTypeId = 1;
+                    foreach (LineItem item in cart.Where(i => i.LineItemType == "Subscription" && i.ProductId == newLineItem.ProductId)) // Loop through Cart Sub Item List
+                    {
+                        newQuantity = item.Quantity + newLineItem.Quantity;
+                        _lineItemRepository.UpdateQuantity(item.LineItemId, newQuantity);
+                    }
+                    if (newQuantity == 0)
+                    {
+                        _lineItemRepository.AddALineItem(newLineItem);
+                    }
                 }
-                if (itemTypeId == newLineItem.LineItemTypeId && item.ProductId == newLineItem.ProductId)
+                if (newLineItem.LineItemTypeId == 2)//Show
                 {
-                    //Update the quantity of the existing item
-                    var newQuantity = item.Quantity + newLineItem.Quantity;
-                    _lineItemRepository.UpdateQuantity(item.LineItemId, newQuantity);
-                }
-                else
-                {
-                    _lineItemRepository.AddALineItem(newLineItem);
+                    foreach (LineItem item in cart.Where(i => i.LineItemType == "Show" && i.ProductId == newLineItem.ProductId)) // Loop through Cart Show Item List
+                    {
+                        newQuantity = item.Quantity + newLineItem.Quantity;
+                        _lineItemRepository.UpdateQuantity(item.LineItemId, newQuantity);
+                    }
+                    if (newQuantity == 0)
+                    {
+                        _lineItemRepository.AddALineItem(newLineItem);
+                    }
                 }
             }
+            else
+            {
+                _lineItemRepository.AddALineItem(newLineItem);
+            }
+            
             return Ok();
         }
 

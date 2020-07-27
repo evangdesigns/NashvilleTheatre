@@ -40,6 +40,20 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
+        public UserProfile GetUserByEmail(string email)
+        {
+            var sql = "SELECT * FROM [User] WHERE [User].Email = @email";
+
+            var parameters = new { Email = email };
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var result = db.QueryFirstOrDefault<UserProfile>(sql, parameters);
+                return result;
+            }
+
+        }
+
         public int? GetIdByUserName(string firstName, string lastName, string email)
         {
             var sql = @"SELECT Uid FROM [User]
@@ -110,12 +124,11 @@ namespace NashvilleTheatre.DataAccess
 
         public IEnumerable<User> AddSubscriptionToUser(int uid, int subId)
         {
-            var sql = @"
-                       DECLARE @credits INT = (SELECT Credits FROM [Subscription] WHERE SubscriptionId = @subId);
-                       UPDATE [User]
-                       SET
-                            TotalCredits = @credits,
-                            SubscriptionId = @subId,
+            var sql = @"DECLARE @credits INT = (SELECT Credits FROM [Subscription] WHERE SubscriptionId = @subId);
+                        UPDATE [User]
+                        SET
+                        TotalCredits = @credits,
+                        SubscriptionId = @subId,
                         WHERE [Uid] = @uid
                         ";
 
