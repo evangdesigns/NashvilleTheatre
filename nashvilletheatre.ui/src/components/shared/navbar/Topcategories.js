@@ -1,7 +1,8 @@
 import React from 'react';
 import {getTopCategories} from '../../../helpers/data/categoryData';
-import './navbar.scss';
 import Category from '../Category/Category';
+
+import './Navbar.scss';
 
 class Topcategories extends React.Component {
   state = {

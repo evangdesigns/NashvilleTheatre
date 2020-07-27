@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 
 import ntc_logo from '../../../images/ntc_logo_4c.png';
 import profile_icon from '../../../images/icons/profile_icon.png';
-import './navbar.scss';
+import './Navbar.scss';
 
 class Navbar extends React.Component {
   state = {
