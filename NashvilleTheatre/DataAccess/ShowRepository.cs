@@ -28,17 +28,20 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
-        public Show GetShowById(int showId)
+        public CompleteShowInfo GetShowById(int showId)
         {
-            var sql = @"select *
-                        from Show
-                        where ShowId = @showId";
+            var sql = @"SELECT Show.*, TheatreCompany.TheatreCompanyName, Category.CategoryName, Venue.*
+                        FROM Show
+                        JOIN TheatreCompany ON TheatreCompany.TheatreCoId = Show.TheatreCoId
+                        JOIN category ON category.CategoryId = Show.CategoryId
+                        JOIN Venue ON Venue.VenueId = Show.VenueId
+                        WHERE Show.ShowId = @showId";
 
             using (var db = new SqlConnection(ConnectionString))
             {
                 var parameters = new { showId = showId };
 
-                var show = db.QueryFirstOrDefault<Show>(sql, parameters);
+                var show = db.QueryFirstOrDefault<CompleteShowInfo>(sql, parameters);
                 return show;
             }
         }

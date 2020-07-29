@@ -6,8 +6,15 @@
 *{
   font-family: $text;
 }
+*.all-clear {
+  margin: 0;
+  padding: 0;
+}
 *.title {
   color:$mainRed;
+}
+*.white {
+  color:$white;
 }
 *.subtext{
   font-style:italic;
@@ -25,8 +32,8 @@
   font-weight:$bold;
 }
 section {
-  border-top: 1px solid #efefef;
-  padding: 50px 0;
+  border-bottom: 1px solid #efefef;
+  padding: 50px !important;
 }
 h1 {
   font-size: $h1;

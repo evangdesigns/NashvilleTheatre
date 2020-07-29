@@ -99,59 +99,13 @@ namespace NashvilleTheatre.DataAccess
             }
         }
 
-//        public List<DeniseTest> ForDenise(string category)
-//        {
-//            var showSql = @"select * from Show
-//                        Where CategoryId = 1";
-//            var dateSql = "select ShowId, ShowDateTime from ShowDateTime";
-//            using (var db = new SqlConnection(ConnectionString))
-//            {
-//                var shows = db.Query<Show>(showSql);
-//                var dates = db.Query<DeniseDate>(dateSql);
-//                List<DeniseTest> test = new List<DeniseTest>();
-//                foreach (var show in shows)
-//                {
-//                    var test2 = new DeniseTest
-//                    {
-//                        CategoryName = category,
-//                        ShowName = show.ShowName,
-//                        Synopsis = show.Synopsis,
-//                        CreditCost = show.CreditCost,
-//                        ShowList = dates.Where(x => x.ShowId == show.ShowId).Select(x => x.ShowDateTime).ToList()
-//                    };
-//                    test.Add(test2);
-//                }
-//                return test;
-//            }
-//        }
-//    }
-//}
-//public class DeniseTest
-//{
-//    public string CategoryName { get; set; }
-//    public string ShowName { get; set; }
-//    public string Synopsis { get; set; }
-//    public int CreditCost { get; set; }
-//    public List<DateTime> ShowList { get; set; }
-//}
-//public class DeniseDate
-//{
-//    public int ShowId { get; set; }
-//    public DateTime ShowDateTime { get; set; }
-//}
 
-
-public List<ShowByCategory> GetAllShowsByCategoryId(int categoryId)
+        public List<CompleteShowInfo> GetAllShowsByCategoryId(int categoryId)
         {
             var sql = @"select show.*, TheatreCompany.TheatreCompanyName, Category.CategoryName, Venue.*
-                        from show
-                        join TheatreCompany
-                        on TheatreCompany.TheatreCoId = show.TheatreCoId
-                        join category
-                        on category.CategoryId = show.CategoryId
-                        join Venue
-                        on Venue.VenueId = show.VenueId
-                        
+                        from show join TheatreCompany on TheatreCompany.TheatreCoId = show.TheatreCoId
+                        JOIN category on category.CategoryId = show.CategoryId
+                        join Venue on Venue.VenueId = show.VenueId
                         where category.CategoryId = @categoryId
                         order by CategoryId";
 
@@ -168,22 +122,22 @@ public List<ShowByCategory> GetAllShowsByCategoryId(int categoryId)
                     categoryId = categoryId,
 
                 };
-                var showsByCategory = db.Query<ShowByCategory>(sql, parameters);
+                var showsByCategory = db.Query<CompleteShowInfo>(sql, parameters);
                 var showDates = db.Query<ShowsWithDates>(showdatesSql);
-                List<ShowByCategory> showsWithMultipleDates = new List<ShowByCategory>();
+                List<CompleteShowInfo> showsWithMultipleDates = new List<CompleteShowInfo>();
 
 
 
                 foreach (var show in showsByCategory)
                 { 
-                    var showsWithDates = new ShowByCategory
+                    var showsWithDates = new CompleteShowInfo
                     {
                         ShowId = show.ShowId,
                         TheatreCoId = show.TheatreCoId,
                         VenueId = show.VenueId,
                         ShowName = show.ShowName,
                         Synopsis = show.Synopsis,
-                        CreditCost = show.CreditCost,
+                        ShowCost = show.ShowCost,
                         CategoryId = show.CategoryId,
                         ShowImageUrl = show.ShowImageUrl,
                         TheatreCompanyName = show.TheatreCompanyName,

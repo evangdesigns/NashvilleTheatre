@@ -1,0 +1,14 @@
+@import '../../../styles/variables';
+.ShowDatesTable {
+  img {
+    width: 30px;
+    margin-left: 20px;
+  }
+  #quantity{
+    width: 3em;
+  }
+}
+th:last-child,
+  td:last-child {
+    text-align: right;
+  }
