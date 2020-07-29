@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace NashvilleTheatre.Models
 {
-    public class ShowByCategory
+    public class CompleteShowInfo
     {
         public int ShowId { get; set; }
         public int TheatreCoId { get; set; }
         public int VenueId { get; set; }
         public string ShowName { get; set; }
         public string Synopsis { get; set; }
-        public int CreditCost { get; set; }
+        public int ShowCost { get; set; }
         public int CategoryId { get; set; }
         public string ShowImageUrl { get; set; }
         public string TheatreCompanyName { get; set; }
@@ -30,7 +30,6 @@ namespace NashvilleTheatre.Models
 
     public class ShowsWithDates
     {
-       
         public DateTime ShowDateTime { get; set; }
         public int ShowId { get; set; }
     }

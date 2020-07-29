@@ -2,9 +2,6 @@ import React from 'react';
 import './account.scss';
 
 class Account extends React.Component {
-  state = {
-    authed: true
-  }
 
   render() {
     return (

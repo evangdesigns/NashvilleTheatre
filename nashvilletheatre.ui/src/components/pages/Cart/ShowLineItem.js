@@ -9,7 +9,8 @@ class ShowLineItem extends React.Component {
 
   removeLineItemEvent = (e) => {
     e.preventDefault();
-    const { removeLineItem, item } = this.props;
+    const { removeLineItem, item } = this.props
+    //insert prompt here
     removeLineItem(item.lineItemId);
   }
 

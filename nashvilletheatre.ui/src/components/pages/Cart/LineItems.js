@@ -17,11 +17,16 @@ class LineItem extends React.Component {
   }
 
   updateQuantity = (id, quantity) => {
-    updateQuantity(id, quantity)
-    .then(() => {
-      const { getCartData } = this.props;
-      getCartData();
+    console.log(quantity)
+    if(quantity < 1) {
+      this.removeLineItem(id);
+    } else {
+      updateQuantity(id, quantity)
+      .then(() => {
+        const { getCartData } = this.props;
+        getCartData();
     })
+    }
   }
 
   render() {
@@ -29,7 +34,7 @@ class LineItem extends React.Component {
     const showItemListing = shows.map((item) => <ShowLineItem key={item.lineItemId} item={item} removeLineItem={this.removeLineItem} updateQuantity={this.updateQuantity} />)
     const subscriptionItemListing = subscriptions.map((item) => <SubscriptionLineItem key={item.lineItemId} item={item}/>)
     return (
-      <table className="table line-item">
+      <table className="table table-striped line-item">
           <thead>
             <tr>
               <th scope="col">Item</th>

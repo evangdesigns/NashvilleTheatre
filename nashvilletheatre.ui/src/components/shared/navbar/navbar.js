@@ -39,7 +39,6 @@ class Navbar extends React.Component {
       }
     });
   }
-
   render() {
     const { authed } = this.state;
     const { shows, subscriptions, cart } = this.props;
@@ -78,7 +77,6 @@ class Navbar extends React.Component {
     }
 
     };
-
       return (
         <div className="container-fluid">
           <nav className="navbar row align-top">

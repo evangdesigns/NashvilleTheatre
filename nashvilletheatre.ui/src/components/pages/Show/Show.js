@@ -1,6 +1,7 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import HeaderImage from '../../shared/HeaderImage/HeaderImage';
-import MiniShowCard from '../../shared/MiniShowCard/MiniShowCard';
+import ShowDatesTable from '../../shared/ShowDatesTable/ShowDatesTable';
 import { addToCart } from '../../../helpers/data/cartData';
 import { getShow, getShowDates } from '../../../helpers/data/showData';
 
@@ -15,6 +16,13 @@ class Show extends React.PureComponent {
   componentDidMount() {
     const { showId } = this.props.match.params;
     this.getShowData(showId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.showId !== this.state.show.showId) {
+      const showId = nextProps.match.params.showId;
+      this.getShowData(showId);
+    }
   }
 
   getShowData(showId) {
@@ -36,31 +44,42 @@ class Show extends React.PureComponent {
       Quantity: parseInt(quantity)
     };
     addToCart(lineItem)
-    .then(window.alert(`Added ${quantity} tickets to your card`))
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.showId !== this.state.show.showId) {
-      const showId = nextProps.match.params.showId;
-      this.getShowData(showId);
-    }
+    .then()
   }
 
   render() {
     const { show, showDates } = this.state;
-    const showLineUp = showDates.map((date) => <MiniShowCard key={date.showDateTimeId} date={date} addItemToCart={this.addItemToCart}/>)
+    const showLineUp = showDates.map((date) => <ShowDatesTable key={date.showDateTimeId} date={date} addItemToCart={this.addItemToCart}/>)
     return (
-     <div>
-       <HeaderImage src={show.showImageUrl} alt={show.showName}/>
-          <h2 className="text-center">{show.showName}</h2>
-          <h4 className="text-center">Theatre Company Name</h4>
-          <h4 className="text-center">Venue</h4>
-          <div className="d-flex justify-content-center">[MAP CAN GO HERE MAYBE]</div>
-          <div className="d-flex flex-wrap justify-content-center">
-            {showLineUp}
+      <div>
+        <HeaderImage src={show.showImageUrl} alt={show.showName} subheading={show.theatreCompanyName}/>
+        <section>
+
+          <div className="row">
+            <div className="col-md-8 col-md-pull-8">
+              <table className="table table-striped line-item ShowDatesTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Add To Cart</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {showLineUp}
+                </tbody>
+              </table>
+            </div>
+
+          <div className="col-md-4 col-md-push-4">
+          <h5>The Location:</h5>
+            <p>{show.venueName}</p>
+            <h5>The Story:</h5>
+            <p className="text-justify">{show.synopsis}</p>
           </div>
 
+        </div>
+
+      </section>
      </div>
     )
   }

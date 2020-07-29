@@ -42,7 +42,7 @@ class App extends React.Component {
     cart: {},
     shows: [],
     subscriptions:[],
-    modalOn: true
+    modalOn: false,
   };
 
   componentDidMount() {
@@ -97,20 +97,9 @@ class App extends React.Component {
     })}
   }
 
-
-  addItemToCart(productId, quantity) {
-    const cartId = sessionStorage.getItem('cartId');
-    //get productId
-    //get productType
-    //getQuantity => default to 1
-    addToCart()
-    .then()
-  }
-
-  modalToggle = (props) => {
-    const { modalOn } = this.state;
-    if (modalOn) {
-      return (<Modal props={props}/>)
+  toggleModal = (modalBody) => {
+    if(!modalBody) {
+      this.setState({modalOn:false})
     }
   }
 
@@ -118,25 +107,26 @@ class App extends React.Component {
     this.setState({authed : authed});
   }
 
-  // componentWillUnmount() {
-  //   this.removeListener();
-  // };
+  componentWillUnmount() {
+    this.removeListener();
+  };
 
   render() {
-    const { authed, subscribed, shows, subscriptions, cart } = this.state;
+    const { authed, subscribed, shows, subscriptions, cart, modalOn } = this.state;
     return (
       <div className="App">
         <Router>
+          <Modal modalOn={modalOn} closeModal={this.toggleModal}>This is the stuff in the modal</Modal>
           <Navbar handleAuth={this.handleAuthChange} cart={cart} shows={shows} subscriptions={subscriptions}/>
           {/* {subscribed
           ? <UserNav authed={authed} user={user}/>
           : null} */}
-            <Switch>
+            <Switch toggleModal={this.toggleModal}>
               <Route path="/" exact component={Home} authed={authed} getUsersCart={this.getUsersCart} getShowLineItems={this.getShowLineItems} getSubscriptionLineItems={this.getShowLineItems}/>
               <Route path="/login" exact component={Login} authed={authed} handleAuth={this.handleAuthChange} />
               <Route path="/register" exact component={Register} authed={authed} />
               <Route path="/category/:categoryId" exact component={Category} authed={authed} />
-              <Route path="/show/:showId" exact component={Show} authed={authed} />
+              <Route path="/show/:showId" exact component={Show} toggleModal={this.toggleModal}/>
               <Route path="/theatre/:theatreId" exact component={Theatre} authed={authed} />
               <Route path="/venue:venueId" exact component={Venue} authed={authed} />
               <Route path="/account/theatreco" component={SellerDashboard} authed={authed} />
