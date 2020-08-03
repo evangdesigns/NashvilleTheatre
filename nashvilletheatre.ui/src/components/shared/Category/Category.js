@@ -1,24 +1,29 @@
 import React from 'react';
-import { getCategorySummary } from '../../../helpers/data/categoryData';
-import CategoryDropdown from './CategoryDropdown';
+import { getTopCategoriesWithShows } from '../../../helpers/data/categoryData';
+import { NavDropdown } from 'react-bootstrap';
 
 
 class Category extends React.Component {
    state = {
-    categorySummary: {}
+    categorySummary: [],
   }
 
   componentDidMount() {
     const { category } = this.props;
-    getCategorySummary(category.categoryName)
-      .then(categorySummary => this.setState({ categorySummary: categorySummary }))
+    getTopCategoriesWithShows(category.categoryId)
+    .then((categorySummary) => {
+      this.setState({ categorySummary: categorySummary })
+    })
   }
 
   render() {
-    const categorySummary = this.state;
+    const { categorySummary } = this.state;
     const { category } = this.props;
+
     return (
-      <CategoryDropdown key={category.categoryId+"Cat"} category={category} categorySummary={categorySummary} />
+      <NavDropdown title={category.categoryName} id="collasible-nav-dropdown" to={`/category/${category.categoryId}`}>
+      {categorySummary.map(show => <NavDropdown.Item key={show.showId} href={`/show/${show.showId}`}>{show.showName}</NavDropdown.Item>)}
+      </NavDropdown>
     );
   }
 }

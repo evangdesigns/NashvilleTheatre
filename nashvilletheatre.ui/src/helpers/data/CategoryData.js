@@ -13,21 +13,21 @@ const getShowsByCategory = (categoryId) => new Promise((resolve, reject) => {
   .catch(error => reject(error))
 });
 
-const getCategorySummary = (category) => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/api/category/${category}`)
-    .then((result) => resolve(result.data))
-    .catch((error) => reject(error))
-});
-
 const getTopCategories = () => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/api/category/top/categories`)
     .then((result) => resolve(result.data))
     .catch((error) => reject(error))
 });
 
+const getTopCategoriesWithShows = (categoryId) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/api/category/top/categories/${categoryId}`)
+    .then((result) => resolve(result.data))
+    .catch((error) => reject(error))
+});
+
 export {
-  getAllCategories, 
-  getCategorySummary, 
+  getAllCategories,
   getTopCategories,
+  getTopCategoriesWithShows,
   getShowsByCategory
  };

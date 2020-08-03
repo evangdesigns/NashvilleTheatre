@@ -1,7 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Form, FormControl } from 'react-bootstrap';
 import searchIco from '../../../images/icons/search_icon.png'
-import './Navbar.scss';
+import './Navey.scss';
 
 class SearchBar extends React.Component {
   state = {
@@ -21,20 +22,19 @@ class SearchBar extends React.Component {
   render() {
     const { searchTerm } = this.state;
     return (
-      <form className="SearchBar">
-        <div className="form-group">
-          <img src={searchIco} height="30" className="icon-inset" alt="Search:" />
-          <input
-          type="text"
-          className="search-box"
-          id="show-search"
-          placeholder="Event, play, or other show name"
-          value={searchTerm}
-          onChange={this.updateSearchTerm}
-          onKeyDown={this.searchBarChange}
-          />
-        </div>
-      </form>
+      <Form className="SearchBar">
+        <img src={searchIco} height="30" className="icon-inset" alt="Search:" />
+        <FormControl
+        type="text"
+        id="show-search"
+        placeholder="Enter an event, play, or other show name"
+        className="search-box rounded-pill"
+        value={searchTerm}
+        onChange={this.updateSearchTerm}
+        onKeyDown={this.searchBarChange}
+        />
+
+      </Form>
     );
   }
 }

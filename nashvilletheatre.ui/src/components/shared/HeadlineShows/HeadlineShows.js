@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowCard from '../ShowCard/ShowCard';
+import { Row } from 'react-bootstrap';
 import { getAllShows } from '../../../helpers/data/showData';
 
 import './HeadlineShows.scss';
@@ -16,11 +17,12 @@ class HeadlineShows extends React.Component {
 
 	render() {
 		const { shows } = this.state;
-		const singleShow = shows.map((show) => <ShowCard key={show.showId} show={show}/>);
 		return (
-			<div className="headliners d-flex flex-wrap justify-content-center">
-				{singleShow}
-			</div>
+			<section>
+				<Row className="d-flex flex-wrap justify-content-center">
+					{shows.slice(0,6).map((show) => <ShowCard key={show.showId} show={show}/>)}
+				</Row>
+			</section>
 		)
 	}
 }

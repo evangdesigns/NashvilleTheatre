@@ -18,13 +18,14 @@ footer {
     background-color: $black;
     color:$white;
     padding: 30px;
-    .category-links{
+    .category-links {
+      text-align: center;
       border-bottom: 1px $white solid;
+      padding-bottom: 30px;
       .nav {
         font-size:18px;
         color: $white;
         letter-spacing: .1px;
-        margin-bottom: 30px;
       }
     }
   }
@@ -64,7 +65,7 @@ footer {
 .affiliate-group{
   margin: 30px 0;
   .logo-box {
-    margin: 5px;
+    margin: 0 10px;
   }
   img {
     width: 200px;
@@ -88,12 +89,5 @@ footer {
     position: absolute;
     right: 5px;
     top:-4.8px;
-  }
-}
-
-.dropdown-item-text-category {
-  color: $black !important;
-  &:hover {
-    color: $mainRed !important;
   }
 }

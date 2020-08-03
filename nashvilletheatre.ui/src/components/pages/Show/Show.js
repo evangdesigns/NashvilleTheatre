@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import HeaderImage from '../../shared/HeaderImage/HeaderImage';
 import ShowDatesTable from '../../shared/ShowDatesTable/ShowDatesTable';
 import { addToCart } from '../../../helpers/data/cartData';
@@ -36,7 +35,8 @@ class Show extends React.PureComponent {
     })
   }
 
-  addItemToCart(productId, quantity) {
+  addItemToCart = (productId, quantity) => {
+    const {user} = this.props;
     const lineItem = {
       CartId: parseInt(sessionStorage.getItem('cartId')),
       LineItemTypeId: 2,
@@ -44,12 +44,13 @@ class Show extends React.PureComponent {
       Quantity: parseInt(quantity)
     };
     addToCart(lineItem)
-    .then()
+    .then(()=>{this.props.history.push(`/cart/${user.uid}`)})
   }
 
   render() {
+    const {user} = this.props;
     const { show, showDates } = this.state;
-    const showLineUp = showDates.map((date) => <ShowDatesTable key={date.showDateTimeId} date={date} addItemToCart={this.addItemToCart}/>)
+    const showLineUp = showDates.map((date) => <ShowDatesTable key={date.showDateTimeId} date={date} user={user} addItemToCart={this.addItemToCart}/>)
     return (
       <div>
         <HeaderImage src={show.showImageUrl} alt={show.showName} subheading={show.theatreCompanyName}/>
