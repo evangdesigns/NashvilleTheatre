@@ -17,4 +17,12 @@ namespace NashvilleTheatre.Models
         public int CategoryTotal { get; set; }
         public List<ShowNameOnly> ShowList { get; set; }
     }
+
+    public class TopCategory
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public int ShowId { get; set; }
+        public string ShowName { get; set; }
+    }
 }

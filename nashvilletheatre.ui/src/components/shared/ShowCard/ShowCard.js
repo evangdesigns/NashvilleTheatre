@@ -1,23 +1,25 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-
 import './ShowCard.scss';
+import { Col } from 'react-bootstrap';
 
 class ShowCard extends React.Component {
 
 	render() {
 		const { show } = this.props;
 		return (
-			<div className="show-card">
+			<Col md={3} sm={12} className="show-card">
+				<svg height="0" width="0">
+					<defs>
+						<clipPath id="ticket-clip" clipPathUnits="objectBoundingBox"
+						transform="scale(.0015, .0023)">
+							<path d="M640.5,106.6V40.2a40,40,0,0,0-40-40H40.5a40,40,0,0,0-40,40v66.4c25.6,0,46.4,19.5,46.4,43.6S26.1,193.8.5,193.8v66.4a40,40,0,0,0,40,40h560a40,40,0,0,0,40-40V193.8c-25.6,0-46.4-19.5-46.4-43.6S614.9,106.6,640.5,106.6Z"/>
+						</clipPath>
+					</defs>
+				</svg>
+
 				<div className="ticket-image">
-					<svg height="0" width="0">
-						<defs>
-							<clipPath id="ticket-clip">
-								<path d="M320,53.2V0H0V53.2C12.8,53.2,23.2,63,23.2,75S12.8,96.8,0,96.8V150H320V96.8c-12.8,0-23.2-9.8-23.2-21.8S307.2,53.2,320,53.2Z"/>
-							</clipPath>
-						</defs>
-					</svg>
 					<Link to={`/show/${show.showId}`}>
 					<img src={show.showImageUrl} alt={show.showName}/>
 					</Link>
@@ -30,7 +32,7 @@ class ShowCard extends React.Component {
 				<Link to={`/show/${show.showId}`}>
 					<p>GET TICKETS</p>
 				</Link>
-			</div>
+			</Col>
 		);
 	}
 }

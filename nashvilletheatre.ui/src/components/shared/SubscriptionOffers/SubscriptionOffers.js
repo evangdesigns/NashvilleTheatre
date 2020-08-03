@@ -5,6 +5,7 @@ import {getAllSubscriptionsByUserType} from '../../../helpers/data/subscriptionD
 import SingleSubscription from '../SubscriptionOfferCard/SubscriptionOfferCard';
 
 import './SubscriptionOffers.scss';
+import { Row } from 'react-bootstrap';
 
 
 class AllSubscriptions extends React.Component {
@@ -25,10 +26,17 @@ class AllSubscriptions extends React.Component {
         <div className="text-center">
           <h2 className="title">Get All Access to Nashville Theatre!</h2>
           <h3 className="subtext light">Subscribe Today!</h3>
-          <div className="offer-container d-flex flex-wrap justify-content-center">
+          <Row className="offer-container justify-content-center">
             {subscriptionCards}
-          </div>
+          </Row>
           <h4 className="theatre-login">Are you a Theatre or a Venue? <Link to="">Click here</Link></h4>
+          <svg height="0" width="0">
+          <defs>
+            <clipPath id="subscription-ticket-clip" clipPathUnits="objectBoundingBox" transform="scale(0.00333 0.00153)">
+              <path d="M199.4,0c0,24.8-22.1,47.8-49.4,47.8S100.6,24.8,100.6,0H40A40,40,0,0,0,0,39.9V600.1A40,40,0,0,0,40,640h60.6c0-24.8,22.1-47.8,49.4-47.8s49.4,23,49.4,47.8H260a40,40,0,0,0,40-39.9V39.9A40,40,0,0,0,260,0Z"/>
+            </clipPath>
+          </defs>
+        </svg>
         </div>
       </section>
     )

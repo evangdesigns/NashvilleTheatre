@@ -20,7 +20,7 @@ class ShowDatesTable extends React.Component {
 		const showDateId = e.target.id;
 		const { addItemToCart } = this.props;
 		const { quantity} = this.state;
-		addItemToCart(showDateId, quantity)
+    addItemToCart(showDateId, quantity);
 	}
 
   render() {
@@ -44,9 +44,9 @@ class ShowDatesTable extends React.Component {
               value={quantity}
               onChange={this.updateQuantityEvent}
               />
-              <Link onClick={this.eventHandler} to="">
+              <a onClick={this.eventHandler}>
                 <img id={date.showDateTimeId} src={arrow_icon} alt="Add to Cart" />
-              </Link>
+              </a>
             </div>
           </td>
         </tr>

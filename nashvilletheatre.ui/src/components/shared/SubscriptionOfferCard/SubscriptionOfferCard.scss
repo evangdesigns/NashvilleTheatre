@@ -1,31 +1,33 @@
 @import '../../../styles/variables';
 
-.col-md-2 {
-  padding: 0;
-}
-.offer-body {
-  min-width:300px;
-  margin: 10px 5px;
-  padding: 75px 1px;
-  .offer-detail {
-    background-color: $white;
-    padding: 10px;
-    margin: 0 -14px;
-    h1 {
-      font-size: $h2;
-      font-weight: $light;
-      margin-bottom: 0;
-    }
-    h2 {
-      text-transform: capitalize !important;
-    }
-    h5 {
-      margin-top: 0;
-    }
-    button {
-      margin: 20px 0;
+.subscription-card {
+  width: 300px;
+  margin: 20px;
+  .offer-body {
+    margin: 10px 5px;
+    padding: 75px 1px;
+    clip-path: url(#subscription-ticket-clip);
+    -webkit-clip-path: url(#subscription-ticket-clip);
+    .offer-detail {
+      background-color: $white;
+      padding: 10px;
+      h1 {
+        font-size: $h2;
+        font-weight: $light;
+        margin-bottom: 0;
+      }
+      h2 {
+        text-transform: capitalize !important;
+      }
+      h5 {
+        margin-top: 0;
+      }
+      button {
+        margin: 20px 0;
+      }
     }
   }
+
 }
 
 

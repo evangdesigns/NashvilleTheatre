@@ -1,54 +1,15 @@
 import React from 'react'
 import LineItems from './LineItems';
-import { getUsersCart, getSubscriptionLineItems,getShowLineItems } from '../../../helpers/data/cartData';
 import './Cart.scss';
 
 class Cart extends React.Component {
-  state = {
-    cart: {},
-    subscriptions: [],
-    shows: [],
-  }
   componentDidMount() {
-    this.getCartData();
-  }
-
-  getCartData = () => {
-    this.getUsersCart()
-    this.getShowLineItems();
-    this.getSubscriptionLineItems();
-  }
-
-  getUsersCart() {
-    const uid = sessionStorage.getItem('uid');
-    if (uid) {
-      getUsersCart(uid)
-    .then((cart) => {
-      this.setState({ cart: cart })
-      })
-    }
-  }
-
-  getSubscriptionLineItems() {
-    const cartId = sessionStorage.getItem('cartId');
-    if (cartId) {
-    getSubscriptionLineItems(cartId)
-      .then((subscriptions) => {
-        this.setState({ subscriptions: subscriptions })
-    })}
-  }
-
-  getShowLineItems() {
-    const cartId = sessionStorage.getItem('cartId');
-    if (cartId) {
-      getShowLineItems(cartId)
-      .then((shows) => {
-      this.setState({ shows: shows })
-    })}
+    const { getCartData } = this.props;
+    getCartData();
   }
 
   render() {
-    const { cart, shows, subscriptions } = this.state;
+    const { cart, shows, subscriptions, getCartData } = this.props;
     return (
       <div className="cart-container">
         <h1 className="text-center">Box Office</h1>
@@ -56,7 +17,7 @@ class Cart extends React.Component {
 
           <div className="row">
             <div className="col">
-              <LineItems shows={shows} subscriptions={subscriptions} getCartData={this.getCartData}/>
+              <LineItems shows={shows} subscriptions={subscriptions} getCartData={getCartData}/>
             </div>
             <div className="cart-summary col-lg-4">
               <div className="cart-summary-top">

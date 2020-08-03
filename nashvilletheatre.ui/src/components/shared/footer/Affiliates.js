@@ -17,7 +17,7 @@ class Affiliates extends React.Component {
   render() {
     const { theatres } = this.state;
     return (
-      <div className="d-flex flex-wrap align-content-center justify-content-between">
+      <div className="d-flex flex-wrap justify-content-center">
         {theatres.map((theatre) =>
         <div key={theatre.theatreCoId} className="logo-box">
           <Link to={`/theatre/${theatre.theatreCoId}`}>

@@ -26,13 +26,6 @@ namespace NashvilleTheatre.Controllers
             return Ok(categories);
         }
 
-        [HttpGet("{category}")]
-        public IActionResult GetSummaryByCategory(string category)
-        {
-            var summary = _categoryRepository.GetCategorySummariesNew(category);
-            return Ok(summary);
-        }
-
 
         [HttpGet("shows/{categoryId}")]
         public IActionResult GetShowsByCategory(int categoryId)
@@ -57,5 +50,13 @@ namespace NashvilleTheatre.Controllers
             return Ok(categories);
         }
 
+        [HttpGet("top/categories/{categoryId}")]
+        public IActionResult GetTopCategoriesWithShows(int categoryId)
+        {
+            var categories = _categoryRepository.GetTopCategoriesWithShows(categoryId);
+            return Ok(categories);
+        }
+
+        //Need Top categories that only shows exist
     }
 }

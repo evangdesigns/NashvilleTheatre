@@ -6,11 +6,11 @@
 	margin: 1em;
 	padding: 0;
 	justify-content: middle;
-	width: 320px;
 
 	.ticket-image {
 		clip-path: url(#ticket-clip);
-		margin-bottom: -50px;
+		-webkit-clip-path: url(#ticket-clip);
+		margin-bottom:-20%;
 		img {
 			width: 100%;
 		}
